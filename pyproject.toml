@@ -1,0 +1,24 @@
+[project]
+name = "ft_linear_regression"
+version = "0.1.0"
+description = "A simple linear regression implementation from scratch."
+authors = [
+    {name = "rtazlaou", email = "rtazlaou@student.42mulhouse.fr"},
+]
+dependencies = ["numpy>=2.0.2", "matplotlib>=3.9.4", "pydantic>=2.10.6", "pretty-errors>=1.2.25", "pandas>=2.2.3", "watchdog>=6.0.0"]
+requires-python = ">=3.9"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.scripts]
+predict = "python -m src.ft_linear_regression.predict.predict"
+train = "python -m src.ft_linear_regression.train.train"
+all = { composite = ["train", "predict"] }
