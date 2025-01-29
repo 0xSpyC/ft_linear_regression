@@ -5,9 +5,10 @@ import numpy as np
 from .config import *
 import matplotlib.pyplot as plt
 import time
+from matplotlib.widgets import TextBox
+from .evaluate import read_input
 
 def main():
-
     parameters = load_parameters_from_json()
     data = load_normalized_data()
     
@@ -21,6 +22,7 @@ def main():
     update_plot(data, theorical_regression, parameters, ax1, ax2)
 
     try:
+        read_input()
         event_loop()
     except KeyboardInterrupt:
         print("Stopping the program...")

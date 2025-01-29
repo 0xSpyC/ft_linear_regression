@@ -21,4 +21,4 @@ distribution = true
 [tool.pdm.scripts]
 predict = "python -m src.ft_linear_regression.predict.predict"
 train = "python -m src.ft_linear_regression.train.train"
-all = { composite = ["train", "predict"] }
+precision = "python -m src.ft_linear_regression.precision.precision"

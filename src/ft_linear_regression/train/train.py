@@ -10,6 +10,8 @@ class TrainingApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Training Program")
+        self.root.geometry("800x300")
+        self.root.resizable(False, False)
         
         self.parameters = TrainingParameters()
         self.parameters.load_initial_parameters()
@@ -54,15 +56,16 @@ class TrainingApp:
     def reset_ui(self):
         theta0, theta1 = (0,0)
         self.view.update_theta_labels(theta0, theta1)
+    
+    
 
 def main():
 
     root = tk.Tk()
     app = TrainingApp(root)
 
-    root.geometry("400x300")
-    root.resizable(False, False)
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()

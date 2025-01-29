@@ -42,7 +42,8 @@ def load_parameters_from_json():
     except ValidationError:
         raise ValueError("Corrupted parameters file")
     except json.JSONDecodeError:
-        raise ValueError("Invalid JSON format in parameters file")
+        print('race avoided')
+        return load_parameters_from_json()
 
 def modify_json_parameters(new_theta0, new_theta1, loss) -> None:
     new_data = {

@@ -39,7 +39,7 @@ def plot_results(algorithm_line, theoretical_line, data, loss,ax1,ax2):
         else:
             loss = np.array(loss)
         ax2.plot(loss, 'b-', label='Loss')
-        ax2.set(xlim=(0, 100), ylim=(loss.min() * 0.9, loss.max() * 1.1), xlabel='Iterations', ylabel='Loss', title='Loss Function')
+        ax2.set(xlim=(0, 100), ylim=(0.5, loss.max() * 1.1), xlabel='Iterations', ylabel='Loss', title='Loss Function')
         ax2.legend()
     ax2.grid(True)
 

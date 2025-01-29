@@ -3,6 +3,7 @@ from tkinter import ttk
 class TrainingView(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
+        self.validate_cmd = parent.register(self.validate)
         self.create_widgets()
         
     def create_widgets(self):
@@ -18,6 +19,7 @@ class TrainingView(ttk.Frame):
         self.learning_rate_entry = ttk.Entry(self)
         self.learning_rate_entry.insert(0, "0.1")
         self.learning_rate_entry.grid(row=2, column=1, padx=10, pady=10)
+        self.learning_rate_entry.config(validate="key", validatecommand=(self.validate_cmd, "%P"))
         
         self.start_button = ttk.Button(self, text="Start Training")
         self.start_button.grid(row=3, column=0, padx=10, pady=10)
@@ -28,6 +30,7 @@ class TrainingView(ttk.Frame):
         self.reset_button = ttk.Button(self, text="Reset Training")
         self.reset_button.grid(row=3, column=2, padx=10, pady=10)
 
+
     def update_theta_labels(self, theta0, theta1):
         self.theta0_label.config(text=f"Theta 0: {theta0:.4f}")
         self.theta1_label.config(text=f"Theta 1: {theta1:.4f}")
@@ -35,7 +38,20 @@ class TrainingView(ttk.Frame):
     def get_learning_rate(self):
         return self.learning_rate_entry.get()
 
+    
+    def validate_input(self,new_value):
+        if new_value == "":
+            return True
+        try:
+            value = float(new_value)
+            return 0 <= value <= 2
+        except ValueError:
+            return False
+
     def set_commands(self, start_cmd, stop_cmd, reset_cmd):
         self.start_button.config(command=start_cmd)
         self.stop_button.config(command=stop_cmd)
         self.reset_button.config(command=reset_cmd)
+
+    def validate(self, value):
+        return self.validate_input(value)

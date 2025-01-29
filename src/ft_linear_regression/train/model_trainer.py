@@ -9,10 +9,10 @@ class ModelTrainer:
         self.training_active = False
 
     def run(self):
-        self.training_active = True
+        self.training_active = True 
         while self.training_active:
             self.train_step()
-            time.sleep(0.2)
+            time.sleep(0.01)
 
     def train_step(self):
         data = self.parameters.normalized_data
@@ -20,7 +20,7 @@ class ModelTrainer:
         y = data["y_normalized"]
         m = len(x)
 
-        estimated_price = self.parameters.theta0 + self.parameters.theta1 * x
+        estimated_price = self.parameters.theta0 + self.parameters.theta1 * x 
         errors = estimated_price - y
         grad0 = (1/m) * np.sum(errors)
         grad1 = (1/m) * np.sum(errors * x)
@@ -38,6 +38,8 @@ class ModelTrainer:
             self.update_callback()
 
     def update_loss(self, m):
+        if len(self.parameters.loss) > 100:
+            return
         theta0, theta1 = self.parameters.denormalized_parameters
         km = self.parameters.normalized_data["km"]
         price = self.parameters.normalized_data["price"]
